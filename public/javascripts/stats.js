@@ -47,7 +47,7 @@ function onDateChosen(format,date,dateObj,ref){
           },
           bars:{
             align:"center",
-            barWidth: 0.9
+            barWidth: 0.5
 
           }
         }
