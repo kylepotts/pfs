@@ -7,7 +7,6 @@ $('#datepicker').Zebra_DatePicker({
 });
 
 
-
 });
 
 
@@ -32,48 +31,36 @@ function onDateChosen(format,date,dateObj,ref){
     {
         //data - response from server
         console.log(data)
-        $('#container').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Most frequent food served at '+court + ' Dining court'
-            },
-            subtitle: {
-                text: 'In ' + month + ' ' + year
-            },
-            xAxis: {
-                categories: data.labels
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Times Served'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0">Served <b>{point.y:.1f} times</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.1,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Food',
-                data: data.data
 
-            },
+        var myData = []
+        var ticks = []
+        for(var i=0; i<data.labels.length; i++){
+          myData.push([i+1,data.data[i]])
+          ticks.push([i+1,data.labels[i]])
+        }
+        console.log(myData)
+        console.log(ticks)
 
-            ]
-        });
+        var Options = {
+          xaxis:{
+            ticks:ticks
+          },
+          bars:{
+            align:"center",
+            barWidth: 0.9
 
+          }
+        }
+
+
+
+        $.plot($("#mycanvas"), [
+             {
+                 data: myData,
+                 bars: { show: true, fill: 1, fillColor: "#757dad", align:"center" },
+                 color: "#454d7d"
+             }
+       ],Options);
 
 
 
