@@ -5,7 +5,7 @@
   "scripts": {
     "start": "./bin/www",
     "test": "mocha",
-    "postinstall": "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "async": "^0.9.0",
